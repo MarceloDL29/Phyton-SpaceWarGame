@@ -1,7 +1,7 @@
 Juego Creado por Marcelo De León meramente por diversión y para aprender sobre phyton.
 
 Para jugar: 
-1-Instalar phyton en caso de no tenerlo instalado.
+1-Instalar Phyton en caso de no tenerlo instalado.
 
 2- Clonar el repositorio
 Debería quedar algo así 
@@ -15,4 +15,4 @@ Debería quedar algo así
     - music.mp3 -----> aun no implementada
     - juego.py
 
-3-ejecutar juego.py ya sea directamente o desde cualui
+3- Ejecutar juego.py ya sea directamente o desde cualui
