@@ -15,14 +15,14 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # Cargar imágenes
-ship_img = pygame.image.load('ship.png').convert_alpha()
-bullet_img = pygame.image.load('bullet.png').convert_alpha()
-meteor_small_img = pygame.image.load('meteor_small.png').convert_alpha()
-meteor_medium_img = pygame.image.load('meteor_medium.png').convert_alpha()
-meteor_large_img = pygame.image.load('meteor_large.png').convert_alpha()
+ship_img = pygame.image.load('img/ship.png').convert_alpha()
+bullet_img = pygame.image.load('img/bullet.png').convert_alpha()
+meteor_small_img = pygame.image.load('img/meteor_small.png').convert_alpha()
+meteor_medium_img = pygame.image.load('img/meteor_medium.png').convert_alpha()
+meteor_large_img = pygame.image.load('img/meteor_large.png').convert_alpha()
 
 # Cargar música y efectos de sonido (sacar # cuando tenga el archivo)
-#pygame.mixer.music.load('background_music.mp3')
+#pygame.mixer.music.load('sound/background_music.mp3')
 #pygame.mixer.music.set_volume(0.5)
 
 # Clase para la nave
