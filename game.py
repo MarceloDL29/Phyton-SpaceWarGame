@@ -22,7 +22,7 @@ meteor_medium_img = pygame.image.load('img/meteor_medium.png').convert_alpha()
 meteor_large_img = pygame.image.load('img/meteor_large.png').convert_alpha()
 
 # Cargar música y efectos de sonido (sacar # cuando tenga el archivo)
-#pygame.mixer.music.load('sbackground_music.mp3')
+#pygame.mixer.music.load('background_music.mp3')
 #pygame.mixer.music.set_volume(0.5)
 #shoot_sound = pygame.mixer.Sound('shoot.wav')  # Sonido para disparos
 #explosion_sound = pygame.mixer.Sound('explosion.wav')  # Sonido para explosiones
