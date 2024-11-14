@@ -88,7 +88,7 @@ class Meteor(pygame.sprite.Sprite):
             self.points = 10
         elif meteor_type == "large":
             self.image = pygame.transform.scale(meteor_large_img, (70, 70))  # Meteorito grande
-            self.health = 5
+            self.health = 4
             self.damage = 50
             self.points = 25
 
