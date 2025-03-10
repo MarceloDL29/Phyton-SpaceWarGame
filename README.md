@@ -1,20 +1,25 @@
-Juego Creado por Marcelo De León meramente por diversión y para aprender sobre phyton.
+Game created by Marcelo De León purely for fun and to learn about Python.
 
-Para jugar:
+To play:
 
-1-Instalar Phyton en caso de no tenerlo instalado.
-2- Instalar pygame pip install pygame
-3- Clonar el repositorio
-Debería quedar algo así 
-/carpeta_del_juego/
-- juego.py
-- /carpeta_del_juego/img/
-    - ship.png
-    - bullet.png
-    - meteor_small.png
-    - meteor_medium.png
-    - meteor_large.png
-  /carpeta_del_juego/soudn
-    - background_music.mp3 -----> aun no implementada
-    - shoot.wave           -----> aun no implementada
-3- Ejecutar juego.py ya sea directamente o desde cualquier editor de codigo
+#1 Install Python if you don't have it installed.
+
+#2 Install Pygame using pip install pygame.
+
+3# Clone the repository.
+
+/game_folder/
+game.py
+/game_folder/img/
+ship.png
+bullet.png
+meteor_small.png
+meteor_medium.png
+meteor_large.png
+/game_folder/sound/
+background_music.mp3 ----> not yet implemented
+shoot.wav ----> not yet implemented
+
+4# Run game.py either directly or from any code editor.
+
+
