@@ -9,15 +9,25 @@ To play:
 3# Clone the repository.
 
 /game_folder/
+
 game.py
+
 /game_folder/img/
+
 ship.png
+
 bullet.png
+
 meteor_small.png
+
 meteor_medium.png
+
 meteor_large.png
+
 /game_folder/sound/
+
 background_music.mp3 ----> not yet implemented
+
 shoot.wav ----> not yet implemented
 
 4# Run game.py either directly or from any code editor.
