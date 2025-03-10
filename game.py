@@ -15,15 +15,17 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # Cargar imágenes
-ship_img = pygame.image.load('ship.png').convert_alpha()
-bullet_img = pygame.image.load('bullet.png').convert_alpha()
-meteor_small_img = pygame.image.load('meteor_small.png').convert_alpha()
-meteor_medium_img = pygame.image.load('meteor_medium.png').convert_alpha()
-meteor_large_img = pygame.image.load('meteor_large.png').convert_alpha()
+ship_img = pygame.image.load('img/ship.png').convert_alpha()
+bullet_img = pygame.image.load('img/bullet.png').convert_alpha()
+meteor_small_img = pygame.image.load('img/meteor_small.png').convert_alpha()
+meteor_medium_img = pygame.image.load('img/meteor_medium.png').convert_alpha()
+meteor_large_img = pygame.image.load('img/meteor_large.png').convert_alpha()
 
 # Cargar música y efectos de sonido (sacar # cuando tenga el archivo)
-#pygame.mixer.music.load('background_music.mp3')
-#pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.load('sound/background.mp3')
+pygame.mixer.music.set_volume(0.5)
+#shoot_sound = pygame.mixer.Sound('shoot.wav')  # Sonido para disparos
+#explosion_sound = pygame.mixer.Sound('explosion.wav')  # Sonido para explosiones
 
 # Clase para la nave
 class Ship(pygame.sprite.Sprite):
@@ -53,6 +55,7 @@ class Ship(pygame.sprite.Sprite):
             bullet = Bullet(self.rect.centerx, self.rect.top)
             bullets.add(bullet)
             all_sprites.add(bullet)  # Agregar la bala al grupo all_sprites para que se dibuje
+            #shoot_sound.play()  # Reproducir el sonido de disparo
 
 # Clase para las balas
 class Bullet(pygame.sprite.Sprite):
@@ -85,7 +88,7 @@ class Meteor(pygame.sprite.Sprite):
             self.points = 10
         elif meteor_type == "large":
             self.image = pygame.transform.scale(meteor_large_img, (70, 70))  # Meteorito grande
-            self.health = 5
+            self.health = 4
             self.damage = 50
             self.points = 25
 
@@ -103,41 +106,43 @@ class Meteor(pygame.sprite.Sprite):
 def show_menu():
     font = pygame.font.SysFont(None, 55)
     screen.fill(BLACK)
-    
+
     title_text = font.render("Juego de la Nave", True, WHITE)
-    start_text = font.render("1. Iniciar partida", True, WHITE)
-    score_text = font.render("2. Ver puntuaciones", True, WHITE)
-    music_text = font.render("3. Activar/Desactivar música", True, WHITE)
-    quit_text = font.render("4. Salir del juego", True, WHITE)
-    
-    screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, 100))
-    screen.blit(start_text, (WIDTH // 2 - start_text.get_width() // 2, 200))
-    screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 300))
-    screen.blit(music_text, (WIDTH // 2 - music_text.get_width() // 2, 400))
-    screen.blit(quit_text, (WIDTH // 2 - quit_text.get_width() // 2, 500))
+    start_text = font.render("Iniciar partida", True, WHITE)
+    score_text = font.render("Ver puntuaciones", True, WHITE)
+    music_text = font.render("Activar/Desactivar música", True, WHITE)
+    quit_text = font.render("Salir del juego", True, WHITE)
+
+    screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, 50))
+    start_rect = screen.blit(start_text, (WIDTH // 2 - start_text.get_width() // 2, 200))
+    score_rect = screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 300))
+    music_rect = screen.blit(music_text, (WIDTH // 2 - music_text.get_width() // 2, 400))
+    quit_rect = screen.blit(quit_text, (WIDTH // 2 - quit_text.get_width() // 2, 500))
 
     pygame.display.flip()
-    
+
     waiting = True
     while waiting:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    return 'start'
-                if event.key == pygame.K_2:
-                    return 'scores'
-                if event.key == pygame.K_3:
-                    return 'toggle_music'
-                if event.key == pygame.K_4:
-                    return 'quit'
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:  # Verificar si se hizo clic con el botón izquierdo
+                    if start_rect.collidepoint(event.pos):
+                        return 'start'
+                    elif score_rect.collidepoint(event.pos):
+                        return 'scores'
+                    elif music_rect.collidepoint(event.pos):
+                        return 'toggle_music'
+                    elif quit_rect.collidepoint(event.pos):
+                        return 'quit'
 
 # Función para leer puntuaciones anteriores
 def show_scores():
     screen.fill(BLACK)
     font = pygame.font.SysFont(None, 40)
+    
     try:
         with open('highscores.txt', 'r') as f:
             scores = f.readlines()
@@ -150,9 +155,11 @@ def show_scores():
     for i, score in enumerate(scores):
         score_text = font.render(f"{i+1}. {score.strip()}", True, WHITE)
         screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 200 + i * 40))
+        
 
     pygame.display.flip()
     pygame.time.wait(2000)  # Espera para que el jugador pueda leer
+
 
 # Función principal del juego
 def game():
@@ -203,6 +210,7 @@ def game():
                 if hit.health <= 0:
                     ship.points += hit.points
                     hit.kill()
+                    #explosion_sound.play()  # Reproducir sonido de explosión
                 bullet.kill()
 
         # Colisiones entre nave y meteoritos
@@ -210,27 +218,29 @@ def game():
         for hit in hits:
             ship.life -= hit.damage
             if ship.life <= 0:
-                running = False  # Termina el juego
+                main_menu()  # Termina el juego
 
         # Dibujar todo
         screen.fill(BLACK)
         all_sprites.draw(screen)
-        
-        # Dibujar vida y puntuación
+
+        # Mostrar puntuación y vida
         font = pygame.font.SysFont(None, 36)
+        score_text = font.render(f"Puntos: {ship.points}", True, WHITE)
         life_text = font.render(f"Vida: {ship.life}", True, WHITE)
-        points_text = font.render(f"Puntos: {ship.points}", True, WHITE)
-        screen.blit(life_text, (10, 10))
-        screen.blit(points_text, (10, 50))
+        screen.blit(score_text, (10, 10))
+        screen.blit(life_text, (10, 50))
 
         pygame.display.flip()
 
-    pygame.quit()
+    # Guardar puntuación al terminar el juego
+    with open('highscores.txt', 'a') as f:
+        f.write(f"{ship.points}\n")
 
-# Función para activar o desactivar la música
+# Alternar la música
 def toggle_music(is_music_on):
     if is_music_on:
-        pygame.mixer.music.pause()
+        pygame.mixer.music.stop()
     else:
         pygame.mixer.music.play(-1)  # Repetir la música indefinidamente
     return not is_music_on
