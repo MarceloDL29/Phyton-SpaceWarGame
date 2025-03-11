@@ -16,7 +16,8 @@ meteor_medium.png<br>
 meteor_large.png<br>
 /game_folder/sound/<br>
 background_music.mp3<br>
-shoot.mp3 
+shoot.mp3 ----->not implemented<br>
+explosion.mp3----->not implemented
 
 4# Run <code>game.py</code> either directly or from any code editor.
 
