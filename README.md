@@ -2,34 +2,22 @@ Game created by Marcelo De León purely for fun and to learn about Python.
 
 To play:
 
-#1 Install Python if you don't have it installed.
-
-#2 Install Pygame using pip install pygame.
-
+#1 Install <code>Python</code> if you don't have it installed.<br>
+#2 Install <code>Pygame</code> using pip install pygame.<br>
 3# Clone the repository.
 
-/game_folder/
+/game_folder/<br>
+game.py<br>
+/game_folder/img/<br>
+ship.png<br>
+bullet.png<br>
+meteor_small.png<br>
+meteor_medium.png<br>
+meteor_large.png<br>
+/game_folder/sound/<br>
+background_music.mp3<br>
+shoot.mp3 
 
-game.py
-
-/game_folder/img/
-
-ship.png
-
-bullet.png
-
-meteor_small.png
-
-meteor_medium.png
-
-meteor_large.png
-
-/game_folder/sound/
-
-background_music.mp3 ----> not yet implemented
-
-shoot.wav ----> not yet implemented
-
-4# Run game.py either directly or from any code editor.
+4# Run <code>game.py</code> either directly or from any code editor.
 
 
