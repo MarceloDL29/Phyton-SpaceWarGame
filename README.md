@@ -19,6 +19,6 @@ background_music.mp3<br>
 shoot.mp3 ----->not implemented<br>
 explosion.mp3----->not implemented
 
-4# Run <code>game.py</code> either directly or from any code editor.
+#4 Run <code>game.py</code> either directly or from any code editor.
 
 
