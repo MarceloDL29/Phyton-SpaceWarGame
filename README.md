@@ -4,7 +4,7 @@ To play:
 
 #1 Install <code>Python</code> if you don't have it installed.<br>
 #2 Install <code>Pygame</code> using pip install pygame.<br>
-3# Clone the repository.
+#3 Clone the repository.
 
 /game_folder/<br>
 game.py<br>
