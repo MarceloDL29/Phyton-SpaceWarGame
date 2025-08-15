@@ -1,6 +1,8 @@
+<img src ="/img/Title.png">
+
 Game created by Marcelo De León purely for fun and to learn about Python.
 
-To play:
+How to play:
 
 #1 Install <code>Python</code> if you don't have it installed.<br>
 #2 Install <code>Pygame</code> using pip install pygame.<br>
